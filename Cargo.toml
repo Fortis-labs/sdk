@@ -4,7 +4,7 @@ readme = "README.md"
 description = "fortis rust sdk"
 homepage="https://github.com/Fortis-labs/sdk"
 repository ="https://github.com/Fortis-labs/sdk"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 license-file = "LICENSE"
 
