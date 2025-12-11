@@ -1,5 +1,5 @@
 [package]
-name = "fortis-sdk"
+name = "fortis_sdk"
 version = "2.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
