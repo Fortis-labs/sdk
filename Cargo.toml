@@ -1,0 +1,18 @@
+[package]
+name = "fortis-sdk"
+version = "2.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "fortis_sdk"
+
+[dependencies]
+borsh = "1.6.0"
+solana-client = "3.0.0"
+solana-message = "3.0.0"
+solana-sdk = "3.0.0"
+thiserror = "1.0.48"
+
+[features]
+default = []

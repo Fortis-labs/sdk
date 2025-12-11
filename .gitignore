@@ -1,0 +1,7 @@
+# Rust build output
+/target
+**/target
+
+# Rust lockfiles (only ignore if you don't want to commit them)
+Cargo.lock
+**/Cargo.lock
