@@ -35,6 +35,7 @@ By using a multisig, it is important to acknowledge certain concepts. Here are s
 ```console
 cargo add fortis_sdk
 ```
+
 Fortis multisig sdk offers helpers types and methods for various operations 
 ## Architecture
 The high-level architecture of Fortis multisig operations works as follows:
@@ -60,6 +61,8 @@ Once executed, the proposal is finalized.
 If a proposal is executed or if it fails to reach approval before the deadline, the related accounts can be safely closed.
 Any remaining rent is transferred to the rent collector (if one was specified during creation).
 
+## A demonstration of all functionalities can be found [here](https://github.com/Fortis-labs/demo) 
+
 Fortis Multisig is composed of the following Accounts and Instructions:
 ## Accounts
 
@@ -72,3 +75,4 @@ Fortis Multisig is composed of the following Accounts and Instructions:
 - Transaction: An account that stores the transaction to be executed on-chain.
 
 - Vault: A vault account for the multisig, acting as the entity that performs actions on behalf of the multisig.
+
