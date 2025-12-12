@@ -13,7 +13,7 @@ Fortis rust sdk is an extesive toolkit to support multisig proposal workflows on
 The Squads Protocol v4 program is deployed to:
 
 - Solana Mainnet-beta: 2Zwsw5UBArhtKwGV3mQpGMaaH4q8hVDwEyzVjMqTyvgi
-- Solana Devnet: 2vVxSvZcQZTZJWr6jopCBmUZVhGVMg2kX5B6wHnPJpcj
+- Solana Devnet: 2Zwsw5UBArhtKwGV3mQpGMaaH4q8hVDwEyzVjMqTyvgi
 
 ## Responsibility
 By interacting with this program, users acknowledge and accept full personal responsibility for any consequences, regardless of their nature. This includes both potential risks inherent to the smart contract, also referred to as program, as well as any losses resulting from user errors or misjudgment.
