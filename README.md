@@ -12,7 +12,7 @@ Fortis rust sdk is an extesive toolkit to support multisig proposal workflows on
 ## Program (Smart contract) Addresses
 The Squads Protocol v4 program is deployed to:
 
-- Solana Mainnet-beta: 2vVxSvZcQZTZJWr6jopCBmUZVhGVMg2kX5B6wHnPJpcj
+- Solana Mainnet-beta: 2Zwsw5UBArhtKwGV3mQpGMaaH4q8hVDwEyzVjMqTyvgi
 - Solana Devnet: 2vVxSvZcQZTZJWr6jopCBmUZVhGVMg2kX5B6wHnPJpcj
 
 ## Responsibility
@@ -75,4 +75,5 @@ Fortis Multisig is composed of the following Accounts and Instructions:
 - Transaction: An account that stores the transaction to be executed on-chain.
 
 - Vault: A vault account for the multisig, acting as the entity that performs actions on behalf of the multisig.
+
 
