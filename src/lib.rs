@@ -56,7 +56,7 @@ pub mod state {
             ]
         }
     }
-    #[derive(borsh::BorshSerialize, borsh::BorshDeserialize)]
+    //   #[derive(borsh::BorshSerialize, borsh::BorshDeserialize)]
     pub struct MultisigCreateArgs {
         /// The number of signatures required to execute a transaction.
         pub threshold: u8,
@@ -65,20 +65,52 @@ pub mod state {
         /// The members of the multisig.
         pub members: Vec<Pubkey>,
     }
+    impl MultisigCreateArgs {
+        pub fn to_vec(&self) -> Vec<u8> {
+            let mut data = Vec::new();
+
+            // 1️⃣ threshold
+            data.push(self.threshold);
+
+            // 2️⃣ rent_collector Option
+            match &self.rent_collector {
+                Some(pubkey) => {
+                    data.push(1); // Some tag
+                    data.extend_from_slice(pubkey.as_ref());
+                }
+                None => {
+                    data.push(0); // None tag
+                }
+            }
+
+            // 3️⃣ members length as u32 (little endian)
+            let members_len = self.members.len() as u32;
+            data.extend_from_slice(&members_len.to_le_bytes());
+
+            // 4️⃣ members bytes
+            for member in &self.members {
+                data.extend_from_slice(member.as_ref());
+            }
+
+            data
+        }
+    }
     #[derive(borsh::BorshSerialize, borsh::BorshDeserialize)]
     pub struct Multisig {
         /// Key that is used to seed the multisig PDA.
         pub create_key: Pubkey,
-        /// Threshold for signatures.
-        pub threshold: u8,
+        /// The address where the rent for the accounts related to executed, rejected, or cancelled
+        /// transactions can be reclaimed. If set to `None`, the rent reclamation feature is turned off.
+        pub rent_collector: Pubkey,
         /// Last transaction index. 0 means no transactions have been created.
         pub transaction_index: u64,
+        /// Threshold for signatures.
+        pub threshold: u8,
         /// Bump for the multisig PDA seed.
         pub bump: u8,
-        ///rent collector
-        pub rent_collector: Pubkey,
-        //members
-        pub members: Vec<Pubkey>,
+        ///members len
+        pub members_len: u8,
+        //TODO: add rent_collector,program_config and memo
     }
     pub struct ProposalCreateAccounts {
         pub multisig: Pubkey,

@@ -6,7 +6,7 @@ pub const SEED_TRANSACTION: &[u8] = b"transaction";
 pub const SEED_VAULT: &[u8] = b"vault";
 pub const SEED_EPHEMERAL_SIGNER: &[u8] = b"ephemeral_signer";
 
-pub const FORTIS_PROGRAM_ID: Pubkey = pubkey!("2vVxSvZcQZTZJWr6jopCBmUZVhGVMg2kX5B6wHnPJpcj");
+pub const FORTIS_PROGRAM_ID: Pubkey = pubkey!("2Zwsw5UBArhtKwGV3mQpGMaaH4q8hVDwEyzVjMqTyvgi");
 pub const TREASURY: Pubkey = pubkey!("5wBH8hqU4PxVCFXmu3JR6Kegdy2Vq8K7fZnRgN5ZJEr2");
 use solana_sdk::pubkey::Pubkey;
 

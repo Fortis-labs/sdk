@@ -30,7 +30,7 @@ pub fn multisig_create(
     program_id: Option<Pubkey>,
 ) -> Instruction {
     let mut data = vec![0];
-    data.extend_from_slice(&borsh::to_vec(&args).unwrap());
+    data.extend_from_slice(&args.to_vec());
     Instruction {
         accounts: accounts.to_account_metas(),
         data: data,
