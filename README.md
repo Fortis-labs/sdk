@@ -10,7 +10,7 @@ rust sdk for fortis multisig.
 Fortis rust sdk is an extesive toolkit to support multisig proposal workflows on SVM
 
 ## Program (Smart contract) Addresses
-The Squads Protocol v4 program is deployed to:
+The program is deployed to:
 
 - Solana Mainnet-beta: 2Zwsw5UBArhtKwGV3mQpGMaaH4q8hVDwEyzVjMqTyvgi
 - Solana Devnet: 2Zwsw5UBArhtKwGV3mQpGMaaH4q8hVDwEyzVjMqTyvgi
@@ -24,7 +24,7 @@ By using a multisig, it is important to acknowledge certain concepts. Here are s
 - Single Point of Failure with Keys: If all keys are stored in the same location or device, a single breach can compromise the multisig.
 - Forgetting the Threshold: Misremembering the number of signatures required can result in a deadlock, where funds cannot be accessed.
 - No Succession Planning: If keyholders become unavailable (e.g., due to accident, death), without a plan for transition, funds may be locked forever.
-- Transfer of funds to wrong address: Funds should always be sent to the multisig vault account, and not the multisig account address. Due to the design of the Squads Protocol program, funds deposited to the multisig account may not be recoverable.
+- Transfer of funds to wrong address: Funds should always be sent to the multisig vault account, and not the multisig account address. Due to the design of the Fortis program, funds deposited to the multisig account may not be recoverable.
 - If the config_authority of a multisig is compromised, an attacker can change multisig settings, potentially reducing the required threshold for transaction execution or instantly being able to remove and add new members.
 - If the underlying SVM compatible blockchain undergoes a fork and a user had sent funds to the orphaned chain, the state of the blockchain may not interpret the owner of funds to be original one.
 - Users might inadvertently set long or permanent time-locks in their multisig, preventing access to their funds for that period of time.
