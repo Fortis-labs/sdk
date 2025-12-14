@@ -11,14 +11,14 @@ use solana_message::AddressLookupTableAccount;
 
 use crate::error::ClientError;
 use crate::pda::{get_vault_pda, FORTIS_PROGRAM_ID};
-use crate::{vault_transaction, ClientResult};
+use crate::ClientResult;
 use solana_sdk::{instruction::Instruction, pubkey::Pubkey};
-
-/// Gets a `Multisig` account from the chain.
+pub const MULTISIG_HEADER_SIZE: usize = 75;
+/// Gets a `Multisig` account from the chain
 pub async fn get_multisig(rpc_client: &RpcClient, multisig_key: &Pubkey) -> ClientResult<Multisig> {
     let multisig_account = rpc_client.get_account(multisig_key).await?;
 
-    let multisig: Multisig = borsh::from_slice(&mut multisig_account.data.as_slice())
+    let multisig: Multisig = borsh::from_slice(&multisig_account.data[..MULTISIG_HEADER_SIZE])
         .map_err(|_| ClientError::DeserializationError)?;
 
     Ok(multisig)
@@ -79,6 +79,7 @@ pub async fn proposal_execute(
     program_id: Option<Pubkey>,
 ) -> ClientResult<Instruction> {
     let vault_transaction: VaultTransaction = borsh::from_slice(transaction_account_data).unwrap();
+
     let program_id = program_id.unwrap_or(FORTIS_PROGRAM_ID);
 
     let vault_pda = get_vault_pda(&accounts.multisig, Some(&program_id)).0;
