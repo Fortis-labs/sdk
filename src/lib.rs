@@ -59,7 +59,7 @@ pub mod state {
     //   #[derive(borsh::BorshSerialize, borsh::BorshDeserialize)]
     pub struct MultisigCreateArgs {
         /// The number of signatures required to execute a transaction.
-        pub threshold: u8,
+        pub threshold: u16,
         ///rent collector
         pub rent_collector: Option<Pubkey>,
         /// The members of the multisig.
@@ -70,7 +70,7 @@ pub mod state {
             let mut data = Vec::new();
 
             // 1️⃣ threshold
-            data.push(self.threshold);
+            data.extend_from_slice(&self.threshold.to_le_bytes());
 
             // 2️⃣ rent_collector Option
             match &self.rent_collector {
@@ -105,12 +105,11 @@ pub mod state {
         /// Last transaction index. 0 means no transactions have been created.
         pub transaction_index: u64,
         /// Threshold for signatures.
-        pub threshold: u8,
+        pub threshold: u16,
         /// Bump for the multisig PDA seed.
         pub bump: u8,
-        ///members len
-        pub members_len: u8,
-        //TODO: add rent_collector,program_config and memo
+        ///members
+        pub members: Vec<Pubkey>,
     }
     pub struct ProposalCreateAccounts {
         pub multisig: Pubkey,
@@ -136,6 +135,24 @@ pub mod state {
         pub voting_deadline: i64, //deadline to vote ,else will be conidersed rejected
         pub transaction_message: Vec<u8>,
     }
+    #[derive(borsh::BorshSerialize, borsh::BorshDeserialize)]
+    pub struct Proposal {
+        /// The multisig this belongs to.
+        pub multisig: Pubkey,
+        /// Index of the multisig transaction this proposal is associated with.
+        pub transaction_index: u64,
+        //last updated timestamp
+        pub timestamp: i64,
+        //deadline for voting
+        pub deadline: i64,
+        /// The status of the transaction.
+        pub status: u8,
+        /// PDA bump.
+        pub bump: u8,
+        /// Keys that have approved/signed.
+        pub approved: Vec<Pubkey>,
+    }
+
     #[derive(borsh::BorshSerialize, borsh::BorshDeserialize)]
     pub struct ProposalApproveArgs {}
     pub struct ProposalApproveAccounts {
